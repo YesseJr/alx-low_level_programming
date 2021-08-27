@@ -1,8 +1,3 @@
-/*
-*File: print_base16.c
-*Author: Waython Yesse
-*Date: August 2021
-
 #include <stdio.h>
 
 /**
