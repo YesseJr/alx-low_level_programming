@@ -1,10 +1,8 @@
-#include "holberton.h"
-
 /**
- * main - print Holberton, followed by new line
- * Return: 0
+ * main - Prints "Holberton" followed by a new line.
+ *
+ * Return: Always 0.
  */
-
 int main(void)
 {
 	_putchar('H');
