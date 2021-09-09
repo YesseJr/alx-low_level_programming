@@ -1,35 +1,81 @@
 #include "main.h"
 
+char *add_strings(char *n1, char *n2, char *r, int r_index);
+char *infinite_add(char *n1, char *n2, char *r, int size_r);
+
 /**
- * print_number - print an integer, without using long, arrays, or pointers
- * @n: number to be printed
+ * add_strings - Adds the numbers stored in two strings.
+ * @n1: The string containing the first number to be added.
+ * @n2: The string containing the second number to be added.
+ * @r: The buffer to store the result.
+ * @r_index: The current index of the buffer.
+ *
+ * Return: If r can store the sum - a pointer to the result.
+ *         If r cannot store the sum - 0.
  */
-
-void print_number(int n)
+char *add_strings(char *n1, char *n2, char *r, int r_index)
 {
-	unsigned int tens, digit, positive = n;
-	double t_beg = 1;
+	int num, tens = 0;
 
-	if (n == 0)
-		_putchar('0');
-	else
+	for (; *n1 && *n2; n1--, n2--, r_index--)
 	{
-		if (n < 0)
-		{
-			positive = n * -1;
-			_putchar('-');
-		}
-
-		while (t_beg <= positive)
-			t_beg *= 10;
-		tens = t_beg / 10;
-
-		while (tens >= 1)
-		{
-			digit = positive / tens;
-			_putchar(digit + '0');
-			positive = (positive - (tens * digit));
-			tens /= 10;
-		}
+		num = (*n1 - '0') + (*n2 - '0');
+		num += tens;
+		*(r + r_index) = (num % 10) + '0';
+		tens = num / 10;
 	}
+
+	for (; *n1; n1--, r_index--)
+	{
+		num = (*n1 - '0') + tens;
+		*(r + r_index) = (num % 10) + '0';
+		tens = num / 10;
+	}
+
+	for (; *n2; n2--, r_index--)
+	{
+		num = (*n2 - '0') + tens;
+		*(r + r_index) = (num % 10) + '0';
+		tens = num / 10;
+	}
+
+	if (tens && r_index >= 0)
+	{
+		*(r + r_index) = (tens % 10) + '0';
+		return (r + r_index);
+	}
+
+	else if (tens && r_index < 0)
+		return (0);
+
+	return (r + r_index + 1);
+}
+/**
+ * infinite_add - Adds two numbers.
+ * @n1: The first number to be added.
+ * @n2: The second number to be added.
+ * @r: The buffer to store the result.
+ * @size_r: The buffer size.
+ *
+ * Return: If r can store the sum - a pointer to the result.
+ *         If r cannot store the sum - 0.
+ */
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
+{
+	int index, n1_len = 0, n2_len = 0;
+
+	for (index = 0; *(n1 + index); index++)
+		n1_len++;
+
+	for (index = 0; *(n2 + index); index++)
+		n2_len++;
+
+	if (size_r <= n1_len + 1 || size_r <= n2_len + 1)
+		return (0);
+
+	n1 += n1_len - 1;
+	n2 += n2_len - 1;
+	*(r + size_r) = '\0';
+
+	return (add_strings(n1, n2, r, --size_r));
 }
