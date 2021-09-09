@@ -28,10 +28,12 @@ main.h: Header file containing prototypes for all functions written in the proje
 | 5-string_toupper.c   |char *string_toupper(char *);                                |
 | 6-cap_string.c	   |char *cap_string(char *);                                    |
 | 7-leet.c	           |char *leet(char *);                                          |
-| 8-rot13.c            |char *rot13(char *);                                         |
-| 100-print_number.c   |void print_number(int n);                                    |
-|  102-infinite_add.c  |char *infinite_add(char *n1, char *n2, char *r, int size_r); |
-| 103-print_buffer.c   |void print_buffer(char *b, int size);                        |
+| 100-rot13.c            |char *rot13(char *);                                         |
+| 101-print_number.c   |void print_number(int n); 
+;                                 |
+|102-magic.c           |    int main(void)                              ;                                 |
+|  103-infinite_add.c  |char *infinite_add(char *n1, char *n2, char *r, int size_r); |
+| 104-print_buffer.c   |void print_buffer(char *b, int size);                        |
 
 #### Author;
  * Waython Yesse
