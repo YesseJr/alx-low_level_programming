@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * infinite_add - Adds two numbers
  * @n1: Pointer to the first character of number 1
