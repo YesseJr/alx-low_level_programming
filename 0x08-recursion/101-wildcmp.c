@@ -1,5 +1,3 @@
-#include "main.h"
-
 /**
  * wildcmp - compare if string with wildcard mattches
  * @s1: one string
