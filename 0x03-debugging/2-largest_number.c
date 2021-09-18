@@ -16,15 +16,15 @@ scanf("%d %d %d", &a,&b,&c); //taking three numbers as input
 
 	if (a >= b && a >= c)
 	{
-	printf("largest number:%d, largest = a);
+	printf("largest number:%d", largest = a);
 	}
 	else if (b >= a && b >= c)
 	{
-	printf("largest number:%d, largest = b);
+	printf("largest number:%d", largest = b);
 	}
 	else
 	{
-	printf(largest number:%d, largest = c);
+	printf("largest number:%d", largest = c);
 	}
 
 	return (largest);
