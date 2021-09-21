@@ -1,3 +1,5 @@
+#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 int n_words(char *str, int pos);
