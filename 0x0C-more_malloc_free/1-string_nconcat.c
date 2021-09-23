@@ -1,45 +1,58 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
 
+
 /**
-* string_nconcat - prints concatenate string;
-* @s1: input string.
-* @s2: input string.
-* @n: len s2 string for print.
-* Return: Nothing.
-*/
+ *_strlen - calculate and return string length
+ *@string: string
+ *Return: string length
+ */
+
+int _strlen(char *string)
+{
+	int i;
+
+	for (i = 0; string[i] != '\0'; i++)
+		;
+	return (i);
+}
+
+/**
+ *string_nconcat - concatenates two strings
+ *@s1: string 1
+ *@s2: string 2
+ *@n: n bytes to concat from string 2
+ *Return: pointer to concatenated string
+ */
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int l1, i, e;
-	char *a;
+	char *ptr;
+	int num, len, i, j;
 
-	if (s1 == NULL)
+	num  = n;
+
+	if (s1 == NULL) /* account for null strings*/
 		s1 = "";
-
 	if (s2 == NULL)
 		s2 = "";
-	l1 = 0;
-	while (s1[l1])
-		l1++;
+	if (num < 0) /* account for negative n bytes*/
+		return (NULL);
+	if (num >= _strlen(s2)) /*account for n too big*/
+		num = _strlen(s2);
 
-	a = malloc(sizeof(*a) * l1 + n + 1);
+	len = _strlen(s1) + num + 1; /* +1 for null pointer*/
 
-	if (a == NULL)
+	ptr = malloc(sizeof(*ptr) * len); /* malloc and check for error*/
+	if (ptr == NULL)
 		return (NULL);
 
-	for (i = 0, e = 0; i < (l1 + n); i++)
-	{
-		if (i < l1)
-		{
-			a[i] = s1[i];
-		}
-		else
-		{
-			a[i] = s2[e++];
-		}
-	}
-	a[i] = '\0';
-	return (a);
+	for (i = 0; s1[i] != '\0'; i++) /*concat*/
+		ptr[i] = s1[i];
+	for (j = 0; j < num; j++)
+		ptr[i + j] = s2[j];
+	ptr[i + j] = '\0';
+
+	return (ptr);
 }
