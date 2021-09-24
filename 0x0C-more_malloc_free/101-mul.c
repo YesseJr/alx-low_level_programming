@@ -1,301 +1,261 @@
-#include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
-
+int contains_non_numeric(char *str);
+int _atoi(char *s);
+char *infinite_add(char *n1, char *n2, char *r, int size_r);
+void move_int_end_to_beg(char *str, int size, char fill);
+char *multiply_strings(char *s1, char *s2, char *buff, unsigned int size_b);
+void *set_mem(void *p, unsigned int nmemb, unsigned int size, char ch);
+void *_calloc(unsigned int nmemb, unsigned int size);
+int _strlen(char *s);
 /**
- * print_str - Print a given string
- * @str: String to print
- */
-void print_str(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		_putchar(str[i]);
-		i++;
-	}
-	_putchar('\n');
-}
-
-
-/**
- * print_err - Print the word "Error"
- */
-void print_err(void)
-{
-	_putchar('E');
-	_putchar('r');
-	_putchar('r');
-	_putchar('o');
-	_putchar('r');
-	_putchar('\n');
-	exit(98);
-}
-
-/**
- * rev_string - Reverse the given string
- * @s: The string to reverse
- * @size: Size of string to revers;
- * Return: Nothing
- */
-void rev_string(char *s, int size)
-{
-	char *str;
-	int i, r;
-
-	str = malloc(size);
-	if (str == NULL)
-		print_err();
-	i = 0;
-	while (*(s + i) != 0)
-	{
-		str[i] = *(s + i);
-		i++;
-	}
-	r = i - 1;
-	i = 0;
-	while (r > 0)
-	{
-		*(s + r) = str[i];
-		r--;
-		i++;
-	}
-	*(s + r) = str[i];
-	free(str);
-}
-
-/**
- * str_len - Find the length of a given string
- * @str: String to find the length of
+ * main - entry point for program
  *
- * Return: Length of the string
- */
-unsigned int str_len(char *str)
-{
-	unsigned int i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-/**
- * init - Initialize an array with 0
- * @arr: The array to initialize
- * @size: Size of the array
+ * @argc: count of arguments
+ * @argv: list of pointers to arguments
  *
- * Return: Pointer to array
- */
-char *init(char *arr, int size)
-{
-	int i;
-
-	i = 0;
-	while (i < size)
-	{
-		arr[i] = '0';
-		i++;
-	}
-	return (arr);
-}
-
-/**
- * _isstrdigit - Check if input is only numbers
- * @str: Given input to check
- *
- * Return: 1 if a number, 0 if otherwise
- */
-int _isstrdigit(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-/**
- * mul - Multiply two strings together
- * @num1: The first number, as a string
- * @num2: The second number, as a string
- * @len1: The length of the first string
- * @len2: The length of the second string
- *
- * Return: Pointer to char array
- */
-char *mul(char *num1, char *num2, int len1, int len2)
-{
-	int i, prod, j, carry, k, digit, reslen;
-	char *res;
-
-	reslen = len1 + len2 + 1;
-	res = malloc(reslen * sizeof(char));
-	if (res == NULL)
-		print_err();
-	res = init(res, reslen);
-	i = len2 - 1; carry = k = digit = 0;
-	while (i >= 0 && k < (len1 + len2))
-	{
-		j = len1 - 1;
-		k = digit;
-		while (j >= 0)
-		{
-			carry = 0;
-			prod = (num1[j] - '0') * (num2[i] - '0');
-			if (prod > 9)
-				carry += prod / 10;
-			prod = prod % 10;
-			if (((res[k] - '0') + prod) > 9)
-			{
-				carry += 1;
-				res[k] += (prod - 10);
-			}
-			else
-				res[k] += prod;
-			res[k + 1] += carry;
-			k++; j--;
-		}
-		i--; digit++;
-	}
-	if (res[k] == '0')
-		res[k] = '\0';
-	else
-		res[k + 1] = '\0';
-	return (res);
-}
-
-/**
- * remove_zeroes - Remove zeroes from num
- * @str: String to remove zeroes from
- * @len: Length of string
- *
- * Return: Pointer to new string
- */
-char *remove_zeroes(char *str, int len)
-{
-	int i, j;
-	char *nstr;
-
-	i = 0;
-	while (str[i] == '0' && str[i] != '\0')
-	{
-		i++;
-	}
-	if (len - i == 0)
-	{
-		nstr = malloc(2 * sizeof(*nstr));
-		nstr[0] = '0';
-		nstr[1] = '\0';
-		return (nstr);
-	}
-	else
-		len -= i;
-	nstr = malloc(len * sizeof(*nstr) + 1);
-	j = 0;
-	while (j < len)
-	{
-		nstr[j] = str[i];
-		j++;
-		i++;
-	}
-	nstr[j] = '\0';
-	return (nstr);
-}
-
-/**
- * check_zero - Check to see if the number is zero or if zeroes need to be gone
- * @str: Str to check for zeroes
- * @len: len of string
- *
- * Return: Pointer to new num string
- */
-char *check_zero(char *str, int len)
-{
-	char *num;
-	int i;
-
-	if (str[0] == '0' && len != 1)
-		num = remove_zeroes(str, len);
-	else if (str[0] == '0' && len == 1)
-	{
-		num = malloc(len + 1);
-		if (num == NULL)
-			print_err();
-		num[0] = '0';
-		num[1] = '\0';
-	}
-	else
-	{
-		num = malloc(len + 1);
-		if (num == NULL)
-			print_err();
-		i = 0;
-		while (i < len)
-		{
-			num[i] = str[i];
-			i++;
-		}
-		num[i] = '\0';
-	}
-	return (num);
-}
-
-/**
- * main - Run all necessary functions to multply two strings as numbers
- * @argc: Number of args
- * @argv: Value of args
- *
- * Return: 0 on success
+ * Return: 0 on success, 1 on failure
  */
 int main(int argc, char *argv[])
 {
-	int len1, len2, anslen;
-	char *ans, *num1, *num2;
+	unsigned int mem;
+	int i;
+
+	char *ret;
 
 	if (argc != 3)
 	{
-		print_err();
-		exit(98);
+		printf("Error\n");
+		return (98);
 	}
-	if (_isstrdigit(argv[1]) == 0 || _isstrdigit(argv[2]) == 0)
+	for (i = 1; i < argc; i++)
 	{
-		print_err();
-		exit(98);
+		if (contains_non_numeric(argv[i]))
+		{
+			printf("Error\n");
+			return (98);
+		}
 	}
-	len1 = str_len(argv[1]);
-	len2 = str_len(argv[2]);
-	num1 = check_zero(argv[1], len1);
-	if (*num1 == '0')
-	{
-		_putchar('0');
-		_putchar('\n');
-		return (0);
-	}
-	num2 = check_zero(argv[2], len2);
-	if (*num2 == '0')
-	{
-		_putchar('0');
-		_putchar('\n');
-		return (0);
-	}
-	len1 = str_len(num1);
-	len2 = str_len(num2);
-	if (len1 > len2)
-		ans = mul(num1, num2, len1, len2);
-	else
-		ans = mul(num2, num1, len2, len1);
-	anslen = str_len(ans);
-	rev_string(ans, anslen);
-	print_str(ans);
-	free(ans); free(num1); free(num2);
+	mem = _strlen(argv[1]) + _strlen(argv[2]) + 1;
+	ret = _calloc(mem, sizeof(char));
+	if (ret == NULL)
+		return (98);
+	ret = multiply_strings(argv[1], argv[2], ret, mem);
+	printf("%s\n", ret);
 	return (0);
+}
+/**
+ * multiply_strings - multiplies two strings together
+ *
+ * @s1: string 1 to multiply with string 2
+ * @s2: string 2 to multiply with string 1
+ * @buff: buffer to store result in
+ * @size_b: size of buffer in bytes
+ *
+ * Return: pointer to beginning of buffer
+ */
+char *multiply_strings(char *s1, char *s2, char *buff, unsigned int size_b)
+{
+	char *smaller, *larger;
+	int i = 0, res = 0;
+
+	smaller = (_strlen(s1) > _strlen(s2)) ? s1 : s2;
+	larger = (smaller == s1) ? s2 : s1;
+	res =  _atoi(smaller);
+	while (i < res)
+	{
+		buff = infinite_add(buff, larger, buff, size_b);
+		i++;
+	}
+	return (buff);
+}
+/**
+ * _strlen - gets length of string
+ *
+ * @s: string to get length of
+ *
+ * Return: length of string
+ */
+int _strlen(char *s)
+{
+	int len = 0;
+
+	while (s[len])
+		len++;
+	return (len);
+}
+/**
+ * contains_non_numeric - checks if string has non numeric values
+ *
+ * @str: string to check
+ *
+ * Return: 1 if contains non numeric values, 0 if only numeric
+ */
+int contains_non_numeric(char *str)
+{
+	while (*str)
+	{
+		if (*str < '0' || *str > '9')
+			return (1);
+		str++;
+	}
+	return (0);
+}
+/**
+ * _atoi - converts string to integer
+ *
+ * @s: string to convert from
+ *
+ * Return: integer from conversion, -1 if contains nonint
+ */
+int _atoi(char *s)
+{
+	int sign = 1;
+	unsigned int total = 0;
+	char working = 0;
+
+	while (*s)
+	{
+		if (*s == '-')
+			sign = sign * -1;
+		if (*s >= '0' && *s <= '9')
+		{
+			working = 1;
+			total = total * 10 + *s - '0';
+		}
+		else if (*s < '0' || *s > '9')
+		{
+			if (working)
+				break;
+		}
+		s++;
+	}
+	if (sign < 0)
+		total = (-(total));
+	return (total);
+}
+/**
+ * infinite_add - adds two numbers
+ *
+ * @n1: *char - first number
+ * @n2: *char - second number
+ * @r:  *char - buffer where result is stored
+ * @size_r: int - size of buffer
+ *
+ * Return: pointer to r
+ */
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
+{
+	int tempSizeR = size_r;
+	char fill = 'd';
+	int n1Length = 0, n2Length = 0, result = 0, carryStore = 0;
+
+	while (*(n1 + n1Length) != '\0')
+		n1Length++;
+	while (*(n2 + n2Length) != '\0')
+		n2Length++;
+	/* account for 9999, 1, size_r:4, and extra space needed for '\0' */
+	if (n1Length > size_r - 2 || n2Length > size_r - 2)
+		return (0);
+	n1Length--, n2Length--; /* set element behind null byte */
+	while (size_r >= 0)
+	{
+		if (size_r == tempSizeR)
+		{ /* set last byte to end of string char or 'null byte' */
+			r[size_r--] = '\0';
+			continue;
+		}
+		if (n1Length < 0 && n2Length < 0 && carryStore == 0)
+		{
+			r[size_r--] = fill;
+			continue; /* fill in rest with constants's */
+		}
+		else if (n1Length < 0 && n2Length < 0 && carryStore != 0)
+			result = carryStore;
+		else if (n1Length < 0)
+			result = n2[n2Length] + carryStore - '0';
+		else if (n2Length < 0)
+			result = n1[n1Length] + carryStore - '0';
+		else /* normal case */
+		{
+			result = (n1[n1Length] - '0') + (n2[n2Length] - '0') + carryStore;
+		}
+		carryStore = 0;
+		if (result > 9)
+		{
+			carryStore = 1;
+			result = result - 10;
+		}
+		n1Length--, n2Length--;
+		r[size_r--] = result + '0';
+	}
+	move_int_end_to_beg(r, tempSizeR, fill);
+	return (r);
+}
+/**
+ * move_int_end_to_beg - moves integer from end of str to beginning
+ *
+ * @arr: string to change
+ * @arrSize: size of string including null byte
+ * @fillChar: character used to fill string that isn't part being moved
+ *
+ * Return: always void
+ */
+void move_int_end_to_beg(char *arr, int arrSize, char fillChar)
+{
+	int i = 0;
+	int bufferPlacer = 0;
+	/* below loop moves elements to beginning of array */
+	while (i < arrSize)
+	{
+		if (arr[i] != fillChar)
+		{
+			arr[bufferPlacer++] = arr[i];
+			arr[i] = '\0';
+		}
+		else
+			arr[i] = '\0';
+		i++;
+	}
+}
+#include <stdlib.h>
+void *set_mem(void *p, unsigned int nmemb, unsigned int size, char ch);
+/**
+ * _calloc - allocates memory for an array, and inits
+ *
+ * @nmemb: number of members in array
+ * @size: size of each member
+ *
+ * Return: void pointer to beginning of alloc/init'ed memory
+ */
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+	void *ret;
+
+	if (nmemb < 1 || size < 1)
+		return (NULL);
+	ret = malloc(nmemb * size);
+	if (ret == NULL)
+		return (NULL);
+	ret = set_mem(ret, nmemb, size, '\0');
+	return (ret);
+}
+/**
+ * set_mem - sets memory for void pointer
+ *
+ * @p: pointer to beginning of memory to set
+ * @nmemb: number of members of array
+ * @size: size of elements of array
+ * @ch: character to set memory to
+ *
+ * Return: void pointer to beginning of set memory
+ */
+void *set_mem(void *p, unsigned int nmemb, unsigned int size, char ch)
+{
+	char *cast = p;
+	unsigned int i = 0;
+
+	while (i < nmemb * size)
+		cast[i++] = ch;
+	return (p);
 }
