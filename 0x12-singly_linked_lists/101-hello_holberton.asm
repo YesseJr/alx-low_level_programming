@@ -22,5 +22,3 @@ section .data
 
 msg:    db      "Hello, Holberton!", 10
 .len:   equ     $ - msg
-© 2021 GitHub, Inc.
-Terms
