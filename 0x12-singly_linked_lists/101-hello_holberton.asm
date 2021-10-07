@@ -1,26 +1,21 @@
 extern printf
 
-global main
-
-
 section .text
+   global main
 
 main:
-  push rbp
+   push rbp
 
-    mov     rax, 0x2000004 ; write
-    mov     rdi, 1 ; stdout
-    lea     rsi, [rel msg]
-    ; mov     rsi, msg
-    mov     rdx, msg.len
-    syscall
+   mov rdi,fmt
+   mov rsi,msg
+   mov rax,0
+   call printf
 
-    mov     rax, 0x2000001 ; exit
-    mov     rdi, 0
-    call printf
+   pop rbp
 
+   mov rax,0
+   ret
 
 section .data
-
-msg: db "Hello, Holberton!", 0
-fmt: db "%s", 10,0
+   msg: db "Hello, Holberton", 0
+   fmt: db "%s", 10, 0
