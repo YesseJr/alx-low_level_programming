@@ -1,11 +1,13 @@
 extern printf
 
-global start
+global main
 
 
 section .text
 
-start:
+main:
+  push rbp
+
     mov     rax, 0x2000004 ; write
     mov     rdi, 1 ; stdout
     lea     rsi, [rel msg]
@@ -20,5 +22,5 @@ start:
 
 section .data
 
-msg:    db      "Hello, Holberton!", 0
+msg: db "Hello, Holberton!", 0
 fmt: db "%s", 10,0
