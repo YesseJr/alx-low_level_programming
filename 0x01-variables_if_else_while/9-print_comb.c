@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 /**
- *main - print all possible combination of numbers separated with commas, using putchar
+ *main - print all possible combination of numbers separated with commas.
  *Return: Always 0 (Success)
  */
 
