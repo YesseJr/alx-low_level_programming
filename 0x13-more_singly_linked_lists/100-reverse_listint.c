@@ -1,47 +1,29 @@
 #include "lists.h"
 
 /**
- * delete_nodeint_at_index - delete a node at a given position
+ * reverse_listint - reverse linked list
  * @head: pointer to head pointer of linked list
- * @index: index to delete node
- * Return: 1 if succeeded, or -1 if failed
+ * Return: pointer to first node of reversed list
  */
 
-int delete_nodeint_at_index(listint_t **head, unsigned int index)
+listint_t *reverse_listint(listint_t **head)
 {
+	listint_t *prev, *next;
 
-	unsigned int i = 0;
-	listint_t *tmp, *tmp2;
+	/* account for no ptr and empty list */
+	if (head == NULL || *head == NULL)
+		return (NULL);
 
-	/* account for empty list */
-	if (*head == NULL)
-		return (-1);
-
-	tmp = *head;
-
-	/* account for deleting beginning node */
-	if (index == 0)
+	/* iterate thorugh list to reverse linking */
+	prev = NULL;
+	while (*head != NULL)
 	{
-		*head = tmp->next;
-		free(tmp);
-		return (1);
+		next = (*head)->next; /* keep track of next node to move to */
+		(*head)->next = prev; /* link current node's ptr to prev node */
+		prev = *head; /* update previous node to be current node */
+		*head = next; /* move current node to next node */
 	}
+	(*head) = prev; /* unlink last element from null and point backwards */
 
-	/* iterate tmp to idx prior to idx we want to delete */
-	while (i < (index - 1) && tmp != NULL)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-
-	/* account for idx out of range: don't delete and return */
-	if (i != (index - 1) || tmp->next == NULL)
-		return (-1);
-
-	/* link prior idx before delete */
-	tmp2 = tmp->next;
-	tmp->next = (tmp->next)->next;
-	free(tmp2);
-
-	return (1);
+	return (*head);
 }
