@@ -16,8 +16,7 @@
 
 ####   Example of bit manipulation
  * To determine if a number is a power of two, conceptually we may repeatedly do integer divide by two until the number won't divide by 2 evenly; if the only factor left is 1, the original number was a power of 2. Using bit and logical operators, there is a simple expression which will return true (1) or false (0):
-
- > bool isPowerOfTwo = (x != 0) && ((x & (x - 1)) == 0);
+   * bool isPowerOfTwo = (x != 0) && ((x & (x - 1)) == 0);
 
  * The second method uses the fact that powers of two have one and only one bit set in their binary representation:
    * x         == 0...010...0
