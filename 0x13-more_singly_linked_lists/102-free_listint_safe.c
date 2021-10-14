@@ -1,5 +1,6 @@
 #include "lists.h"
 #include <stdlib.h>
+#include <stddef.h>
 
 /**
  * free_listint_safe - Frees a list_t list. Not the safest version, however it
