@@ -20,15 +20,13 @@
  > bool isPowerOfTwo = (x != 0) && ((x & (x - 1)) == 0);
 
  * The second method uses the fact that powers of two have one and only one bit set in their binary representation:
-
-  * x         == 0...010...0
-  * x-1       == 0...001...1
-  * x & (x-1) == 0...000...0
+   * x         == 0...010...0
+   * x-1       == 0...001...1
+   * x & (x-1) == 0...000...0
 
  * If the number is neither zero nor a power of two, it will have '1' in more than one place:
-
-  * x         == 0...1...010...0
-  * x-1       == 0...1...001...1
-  * x & (x-1) == 0...1...000...0
+   * x         == 0...1...010...0
+   * x-1       == 0...1...001...1
+   * x & (x-1) == 0...1...000...0
 
  * If inline assembly language code is used, then an instruction that counts the number of 1's or 0's in the operand might be available; an operand with exactly one '1' bit is a power of 2. However, such an instruction may have greater latency than the bitwise method above.
