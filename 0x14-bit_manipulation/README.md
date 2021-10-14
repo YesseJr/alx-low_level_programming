@@ -29,3 +29,27 @@
    * x & (x-1) == 0...1...000...0
 
  * If inline assembly language code is used, then an instruction that counts the number of 1's or 0's in the operand might be available; an operand with exactly one '1' bit is a power of 2. However, such an instruction may have greater latency than the bitwise method above.
+
+
+> Each file in this repository holds code that illustrates an essential concept of programming, specific to the C programming language: how to manipulate bits via switiching them on and off, getting them, and printing to/from binary.
+
+### Description of what each file shows:
+
+main.h ---------- holds files' function prototypes
+And;
+Files that start with:
+
+* 0. a function that converts a binary number to an unsigned int
+* 1. a function that prints the binary of a number without using / or %
+* 2. a function that returns the value of a bit at a given index
+* 3. a function that sets the value of a bit to 1 at a given index
+* 4. a function that sets the value of a bit to 0 at a given index
+* 5. a function that returns the number of bits you would need to flip to get from one number to another
+* 6. a function that checks for big endian and little endian
+* 7. a file that contains a password
+
+### Environment
+* Language: C
+* OS: Ubuntu 14.04 LTS
+* Compiler: gcc 4.8.4
+* Style guidelines: Betty style
