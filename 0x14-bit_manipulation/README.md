@@ -1,8 +1,8 @@
 # BIT MANIPULATION.
 
-## Author: Waython Yesse.
-## Occupation: Currently a Software Engineering Student at ALX.
-## Year: 2021 October 14.
+##### Author: Waython Yesse.
+##### Occupation: Currently a Software Engineering Student at ALX.
+##### Year: 2021 October 14.
 
 ### Summary.
 
