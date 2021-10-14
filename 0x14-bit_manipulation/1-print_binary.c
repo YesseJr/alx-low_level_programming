@@ -1,3 +1,9 @@
+/*
+ * File: get_bit.c
+ * Author: Waython Yesse
+ * Year: 2021 October 14 (Nyerere Day!)
+ */
+
 #include "main.h"
 #include <stdio.h>
 
