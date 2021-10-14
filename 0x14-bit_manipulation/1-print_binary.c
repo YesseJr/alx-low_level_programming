@@ -1,5 +1,5 @@
 /*
- * File: get_bit.c
+ * File: 1-print_binary.c
  * Author: Waython Yesse
  * Year: 2021 October 14 (Nyerere Day!)
  */
