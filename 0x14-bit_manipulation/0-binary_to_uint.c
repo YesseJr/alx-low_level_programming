@@ -6,34 +6,61 @@
 
 #include "main.h"
 
+int proc_binary(const char *b);
+
 /**
- * binary_to_uint - convert binary to unsigned int
- * @b: binary
- * Return: unsigned int
+ * proc_binary - Checks if the string contains only 0s and 1s.
+ *
+ * @b: const char pointer to string of binary numbers.
+ *
+ * Return: length of the string or -1 if b is null or contains a non  0 or 1
+ * character.
  */
+
+int proc_binary(const char *b)
+{
+	int length;
+
+	length = -1;
+	if (b)
+	{
+		length = 0;
+		while (b[length])
+		{
+			if (b[length] == '1' || b[length] == '0')
+				length++;
+			else
+				return (-1);
+		}
+	}
+	return (length);
+}
+/**
+ * binary_to_uint - Converts a binary number to an unsigned int.
+ *
+ * @b: const char pointer to string of binary numbers.
+ *
+ * Return: The unsigned int represented by b.
+ */
+
 unsigned int binary_to_uint(const char *b)
 {
-	int len = 0, pow = 1;
- *	unsigned int sum = 0, error = 0;
- *
- *	if (b == NULL)
- *		return (error);
- *
- *	while (b[len] != '\0') // find string length
- *		len++;
- *	len -= 1;
- *
- *	while (len >= 0) // iterate from back of string
- *	{
- *		if ((b[len] != '0') && (b[len] != '1'))
- *			return (error);
- *
- *		if (b[len] == '1') // add appropriate power of 2 if '1'
- *			sum += pow;
- *
- *		pow *= 2; // update power of 2
- *		len--;
- *	}
- *
- *	return (sum);
- *}
+	unsigned int num;
+	unsigned int bit;
+	int length;
+
+	/* may to need check if string b is longer than bits in an int */
+	length = proc_binary(b);
+	num  = 0;
+	if (length != -1)
+	{
+		bit = 1;
+		for (length--; length >= 0; length--)
+		{
+			num += bit * (b[length] - '0');
+			bit = bit << 1;
+		}
+	}
+
+	return (num);
+}
