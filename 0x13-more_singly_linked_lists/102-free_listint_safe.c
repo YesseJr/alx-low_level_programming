@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include "lists.h"
 
-size_t free_listint_safe (listint_t **h)
+size_t free_listint_safe(listint_t **h)
 {
 	listint_t *now;
 	listint_t *next;
