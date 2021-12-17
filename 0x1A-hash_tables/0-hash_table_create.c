@@ -2,6 +2,7 @@
 
 /**
  * hash_table_create - creates a hash table
+ * 
  * @size: size of the table
  * Return: hash table on success, NULL on failure.
  */
