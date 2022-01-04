@@ -1,3 +1,9 @@
+/*
+ * File: 4-print_alphabt.c
+ * Author: Waython Yesse
+ * Occupation: Software Engineering at ALX
+ */
+
 #include <stdio.h>
 
 /**
@@ -7,15 +13,15 @@
 
 int main(void)
 {
-	char alpha = 'a';
+	char love = 'a';
 
-	while (alpha <= 'z')
+	while (love <= 'z')
 	{
-		if ((alpha != 'q') && (alpha != 'e'))
+		if ((love != 'q') && (love != 'e'))
 		{
-			putchar(alpha);
+			putchar(love);
 		}
-		alpha++;
+		love++;
 	}
 	putchar('\n');
 
