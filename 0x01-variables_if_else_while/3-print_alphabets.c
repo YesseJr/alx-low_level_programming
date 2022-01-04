@@ -1,3 +1,9 @@
+/*
+ * File: 3-print_alphabet.c
+ * Author: Waython Yesse
+ * Occupation: Software Engineering Student at ALX
+ */
+
 #include <stdio.h>
 
 /**
@@ -7,19 +13,19 @@
 
 int main(void)
 {
-	char lower = 'a';
-	char upper = 'A';
+	char side_A = 'a';
+	char side_B = 'A';
 
-	while (lower <= 'z') /*print lowercases a-z*/
+	while (side_A <= 'z')
 	{
-		putchar(lower);
-		lower++;
+		putchar(side_A);
+		side_A++;
 	}
 
-	while (upper <= 'Z') /*print uppercase A-Z*/
+	while (side_B <= 'Z')
 	{
-		putchar(upper);
-		upper++;
+		putchar(side_B);
+		side_B++;
 	}
 
 	putchar('\n');
