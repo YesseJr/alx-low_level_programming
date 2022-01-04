@@ -1,3 +1,8 @@
+/*
+ * File: 2-print_alphabet.c
+ * Author: Waython Yesse
+ * Occupation: Software Engineering Student at ALx 
+*/
 #include <stdio.h>
 
 /**
@@ -7,12 +12,12 @@
 
 int main(void)
 {
-	char alpha = 'a';
+	char Waython = 'a';
 
-	while (alpha <= 'z')
+	while (Waython <= 'z')
 	{
-		putchar(alpha);
-		alpha++;
+		putchar(Waython);
+		Waython++;
 	}
 	putchar('\n');
 
