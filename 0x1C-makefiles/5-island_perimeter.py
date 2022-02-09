@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-A function that returns the perimeter of the island described in grid:
+Module Island Perimeter
 """
 
 
