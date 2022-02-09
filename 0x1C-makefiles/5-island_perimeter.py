@@ -5,10 +5,7 @@ Module Island Perimeter
 
 
 def island_perimeter(grid):
-    """
-    Calculate perimeter of grid where "1" is found
-    """
-    
+    """Calculate perimeter of grid where "1" is found"""
     cellie = 0
     for row in range(len(grid)):
         for col in range(len(grid[0])):
