@@ -4,7 +4,7 @@
 
 #include "search_algos.h"
 
-int binary_helper(int *array, int alx, int hi, int value);
+int binary_helper(int *array, int lo, int hi, int value);
 
 /**
  * exponential_search - Performs exponential search on a sorted array of
@@ -16,15 +16,14 @@ int binary_helper(int *array, int alx, int hi, int value);
  *
  * Return: The index at which `value` is found. -1 if array is NULL.
  */
-
 int exponential_search(int *array, size_t size, int value)
 {
-	int alx, hi;
+	int lo, hi;
 
 	if (array == NULL || size < 1)
 		return (-1);
 
-	alx = 0;
+	lo = 0;
 	hi = 1;
 
 	while (1)
@@ -32,7 +31,7 @@ int exponential_search(int *array, size_t size, int value)
 		if (hi < (int) size)
 		{
 			printf("Value checked array[%d] = [%d]\n", hi, array[hi]);
-			alx = hi;
+			lo = hi;
 			hi *= 2;
 		}
 		else
@@ -44,9 +43,9 @@ int exponential_search(int *array, size_t size, int value)
 			break;
 	}
 
-	printf("Value found between indexes [%d] and [%d]\n", alx, hi);
+	printf("Value found between indexes [%d] and [%d]\n", lo, hi);
 
-	return (binary_helper(array, alx, hi, value));
+	return (binary_helper(array, lo, hi, value));
 }
 
 /**
@@ -60,26 +59,25 @@ int exponential_search(int *array, size_t size, int value)
  * Return: The index of where `value` is first found in the subarray. -1 if
  * `value` was not found.
  */
-
-int binary_helper(int *array, int alx, int hi, int value)
+int binary_helper(int *array, int lo, int hi, int value)
 {
-	int i, j;
+	int i, m;
 
-	while (alx <= hi)
+	while (lo <= hi)
 	{
-		printf("Searching in array: %d", array[alx]);
-		for (i = alx + 1; i < hi + 1; i++)
+		printf("Searching in array: %d", array[lo]);
+		for (i = lo + 1; i < hi + 1; i++)
 			printf(", %d", array[i]);
 		printf("\n");
 
-		m = (hi - alx) / 2 + alx;
-		if (value == array[j])
-			return (j);
+		m = (hi - lo) / 2 + lo;
+		if (value == array[m])
+			return (m);
 
-		if (value > array[j])
-			alx = j + 1;
+		if (value > array[m])
+			lo = m + 1;
 		else
-			hi = j - 1;
+			hi = m - 1;
 	}
 
 	return (-1);
