@@ -6,44 +6,53 @@
 #include <math.h>
 
 /**
- * jump_search - Performs jump search on a sorted array of integers.
+ * jump_search - searches for a value in a sorted array of integers
+ * using the Jump search algorithm
+ * @array: array to look into
+ * @size: size of the array
+ * @value: value to look for
  *
- * @array: Pointer to the sorted array of integers.
- * @size: Size of the sorted array.
- * @value: Integer value for search for in the array.
- *
- * Return: The index at which `value` is found. -1 if the array is NULL or
- * `value` was not found.
+ * Return: index of the value found, or -1
  */
- 
 int jump_search(int *array, size_t size, int value)
 {
-	size_t sqr, lo, hi;
+	size_t start, end, step;
 
-	if (array == NULL || size < 1)
+	if (!array || size == 0)
 		return (-1);
+	step = sqrt(size);
+	start = 0, end = step;
 
-	lo = 0;
-	sqr = sqrt(size);
-	hi = sqr;
-
-	while (1)
+	while (start < size)
 	{
-		printf("Value checked array[%zd] = [%d]\n", lo, array[lo]);
-		if (hi >= size || array[hi] >= value)
-			break;
-		lo = hi;
-		hi += sqr;
-
+		printf("Value checked array[%lu] = [%d]\n", start, array[start]);
+		if (end < size)
+		{
+			if (array[start] <= value && value <= array[end])
+			{
+				printf("Value found between indexes [%lu] and [%lu]\n", start, end);
+				break;
+			}
+		} else
+		{
+			if (array[start] <= value)
+			{
+				printf("Value found between indexes [%lu] and [%lu]\n", start, end);
+				break;
+			}
+		}
+		start = end;
+		end = start + step;
 	}
 
-	printf("Value found between indexes [%zd] and [%zd]\n", lo, hi);
-
-	for (; lo < hi + 1 && lo < size; lo++)
+	while (start <= end)
 	{
-		printf("Value checked array[%zd] = [%d]\n", lo, array[lo]);
-		if (array[lo] == value)
-			return (lo);
+		if (start == size)
+			return (-1);
+		printf("Value checked array[%lu] = [%d]\n", start, array[start]);
+		if (array[start] == value)
+			return (start);
+		start++;
 	}
 
 	return (-1);
