@@ -5,48 +5,6 @@
 #include "search_algos.h"
 
 /**
- * print_array - print
- * @array: The sort 
- * @left: min 
- * @right: max
- * Return: Nothing
- */
-void print_array(int *array, int left, int right)
-{
-	int i;
-
-	for (i = left; i < right; i++)
-		printf("%d, ", array[i]);
-	printf("%d\n", array[i]);
-}
-/**
- * binary_search_new - seacrh dividin
- * @array: the sort 
- * @left: min 
- * @right: max 
- * @value: value 
- * Return: The index
- */
-int binary_search_new(int *array, int left, int right, int value)
-{
-	int i = 0;
-
-	while (left <= right)
-	{
-		printf("Searching in array: ");
-		print_array(array, left, right);
-		i = (left + right) / 2;
-		if (array[i] < value)
-			left = i + 1;
-		else if (array[i] > value)
-			right = i - 1;
-		else
-			return (i);
-	}
-	return (-1);
-}
-
-/**
  * exponential_search - search by half
  * @array: The sort array
  * @size: Size of the array
