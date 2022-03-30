@@ -1,41 +1,62 @@
+/*
+ * File: 0-linear.c
+ * Author: Waython Yesse
+ */
+
 #include "search_algos.h"
 
 /**
- * binary_search - Performs binary search on an array of sorted integers.
- *
- * @array: Pointer to the sorted array of integers.
- * @size: The size of the array.
- * @value: The value to search for in the array.
- *
- * Return: The index of where `value` is first found in the array. -1 if the
- * array is NULL
+ * binary_search - binary search implementation
+ * @array: string
+ * @size: size_t
+ * @value: value
+ * Return: int, index of the value
  */
- 
+
 int binary_search(int *array, size_t size, int value)
 {
-	size_t lo, hi, mi, i;
-
-	if (array == NULL || size < 1)
-		return (-1);
-
-	lo = 0;
-	hi = size - 1;
-	while (lo <= hi)
-	{
-		printf("Searching in array: %d", array[lo]);
-		for (i = lo + 1; i < hi + 1; i++)
-			printf(", %d", array[i]);
-		printf("\n");
-
-		mi = (hi - lo) / 2 + lo;
-		if (value == array[mi])
-			return (mi);
-
-		if (value > array[mi])
-			lo = mi + 1;
-		else
-			hi = mi - 1;
-	}
-
+size_t i;
+int left = 0;
+int right = size;
+int middle;
+if (array == NULL)
 	return (-1);
+
+for (i = 0; left < right; i++)
+{
+	printf("Searching in array: ");
+	print_array(array, left, right);
+	middle = (left + right) / 2;
+
+	if (array[middle] < value)
+		left = middle + 1;
+	else if (array[middle] > value)
+		right = middle;
+	else
+		return (middle);
+}
+return (-1);
+}
+
+
+/**
+ * print_array - print `n` elements of an array of integers
+ * @a: int array pointer to print
+ * @i: int, start index
+ * @j: int, end index
+ * Description: Numbers must be separated by comma and space.
+ * Numbers should be displayed in the same order they are stored in array.
+ * You can only use _putchar to print.
+ */
+
+void print_array(int *a, int i, int j)
+{
+
+	for (; i < j; i++)
+	{
+		printf("%d", a[i]);
+		if (i < j - 1)
+			printf(", ");
+	}
+	printf("\n");
 }
