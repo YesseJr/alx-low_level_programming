@@ -1,7 +1,3 @@
-/* File: 103-exponential.c
- * Author: Waython Yesse
- */
-
 #include "search_algos.h"
 
 /**
