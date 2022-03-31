@@ -9,7 +9,7 @@
  * Return: The pointer to the first node found containing `value`. NULL if
  * `value` was not found or `list` is NULL.
  */
- 
+
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
 	skiplist_t *node, *jump;
