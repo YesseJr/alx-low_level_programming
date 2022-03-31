@@ -1,7 +1,3 @@
-/* File: 100-jump.c
- * Author: Waython Yesse
- */
-
 #include "search_algos.h"
 #include <math.h>
 
