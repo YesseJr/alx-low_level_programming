@@ -11,7 +11,6 @@ void print_i(int *array, size_t i)
 {
 	printf("Value checked array[%lu] = [%d]\n", i, array[i]);
 }
-
 /**
  * interpolation_search - like binary search, but use idx based on formula
  * @array: given array of ints
